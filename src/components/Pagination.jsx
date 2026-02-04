@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
+// import { useSearchParams } from 'react-router-dom';
 
 const Pagination = () => {
-  const { page, totalPages, handlePageChange, loading } = useContext(AppContext);
+  const { totalPages, handlePageChange, loading ,page} = useContext(AppContext);
 
-  // useEffect(() => {
-  //   handlePageChange(page);
-  // }, [page])
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const pageAvailable = searchParams.get("page");
+  // const page = pageAvailable ? Number(pageAvailable) : 1;
+
 
 
   return (
@@ -18,6 +20,10 @@ const Pagination = () => {
           {
             page > 1 &&
             <button onClick={() => {
+              // setSearchParams(prev=> {
+              //   prev.set("page",page-1);
+              //   return prev;
+              // })
 
               if (loading) return;
               handlePageChange(page - 1)
@@ -27,9 +33,17 @@ const Pagination = () => {
           {
             page < totalPages &&
             <button onClick={() => {
-              if (loading) return;
+            //    setSearchParams(prev=> {
+            //     prev.set("page",page+1);
+            //     return prev;
+              
+            // })
+            if (loading) return;
               handlePageChange(page + 1)
-            }} className={` px-3 py-1 border rounded-md cursor-pointer font-semibold`}>Next</button>
+
+          
+          }
+          } className={` px-3 py-1 border rounded-md cursor-pointer font-semibold`}>Next</button>
           }
         </div>
 
